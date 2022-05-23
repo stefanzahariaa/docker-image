@@ -1,8 +1,5 @@
-# getting base image from Ubuntu
-FROM ubuntu
+FROM openjdk:8
+EXPOSE 8080
+ADD target/docker-jenkins-integration-sample.jar docker-jenkins-integration-sample.jar
+ENTRYPOINT ["java","-jar","/docker-jenkins-integration-sample.jar"]
 
-MAINTAINER stefan zaharia <stefan.zaharia93@yahoo.com>
-
-RUN apt-get update
-
-CMD ["echo" , "Hello guys, this is my first docker image :)"]
