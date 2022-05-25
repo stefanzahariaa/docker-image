@@ -6,6 +6,8 @@ node{
 }
     environment {
      dockerhub=credentials('stefanzaharia93')
+     USERNAME = credentials('DOCKER_USERNAME')
+     PASSWORD = credentials('DOCKER_PASSWORD')
 
  }
 
@@ -14,7 +16,7 @@ node{
   }
     stage('Pushing to dockerhub'){
           sh 'docker tag loadbalancer stefanzaharia93/loadbalancer'
-          sh 'echo $dockerhub_PSW | docker login -u stefanzaharia93 --password-stdin'
+          sh 'echo $dockerhub_PSW | docker login -u ${USERNAME} -p ${PASSWORD} dockerregistry.cloud.remote'
             
           sh 'docker push stefanzaharia93/loadbalancer'
       }
