@@ -16,9 +16,7 @@ node{
   }
     stage('Pushing to dockerhub'){
           script {
-            docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
-            }
+            docker.withRegistry( '', registryCredential ) 
       }
     }
 }
