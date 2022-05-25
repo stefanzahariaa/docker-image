@@ -5,8 +5,9 @@ node{
           checkout scm
 }
     environment {
-     USERNAME = credentials('DOCKER_USERNAME')
-     PASSWORD = credentials('DOCKER_PASSWORD')
+    registry = "stefanzaharia93/loadbalancer"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
 
  }
 
@@ -14,9 +15,10 @@ node{
       app = docker.build("loadbalancer")
   }
     stage('Pushing to dockerhub'){
-          sh 'docker login -u ${USERNAME} -p ${PASSWORD}'
-          sh 'docker tag loadbalancer stefanzaharia93/loadbalancer'
-          sh 'docker push stefanzaharia93/loadbalancer'
+          script {
+            docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+            }
       }
     }
 
