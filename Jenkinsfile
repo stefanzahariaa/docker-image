@@ -13,9 +13,8 @@ node{
       app = docker.build("loadbalancer")
   }
     stage('login'){
-        steps {
+        
           sh 'echo $dockerhubcredentials_PSW | docker login -u $dockerhubcredentials_USR --password-stdin'
-        }
 
     }
     stage('Pushing to dockerhub'){
