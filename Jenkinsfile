@@ -15,7 +15,7 @@ node{
   }
     stage('Pushing to dockerhub'){
           sh 'docker tag loadbalancer stefanzaharia93/loadbalancer'
-          sh 'echo $dockerhub_PSW | docker login -u ${USERNAME} -p ${PASSWORD} dockerregistry.cloud.remote'
+          sh 'echo $dockerhub_PSW | docker login -u ${USERNAME} -p ${PASSWORD}'
             
           sh 'docker push stefanzaharia93/loadbalancer'
       }
