@@ -14,7 +14,7 @@ node{
   }
     stage('login'){
         
-          sh 'echo $DOCKERHUB_credentials_PSW | docker login -u $DOCKERHUB_credentials_USR --password-stdin'
+          sh 'docker login -u stefanzaharia93 -p 2c5f6afe-b64a-4a7a-bd99-58f0c92a7781'
 
     }
     stage('Pushing to dockerhub'){
