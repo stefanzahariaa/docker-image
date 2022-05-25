@@ -1,16 +1,15 @@
 node{
     def app
-stage('Clone repository'){
-      
+    stage('Clone repository'){
 
-        checkout scm
+          checkout scm
 }
- environment {
+    environment {
      dockerhub=credentials('stefanzaharia93')
 
  }
 
-  stage('build image'){
+    stage('Build image'){
       when{
           branch "master"
           }
@@ -18,7 +17,7 @@ stage('Clone repository'){
           sh 'docker build -t loadbalancer'
       }
   }
-  stage('pushing to dockerhub'){
+    stage('Pushing to dockerhub'){
       when{
           branch"master"
           }
