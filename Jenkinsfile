@@ -6,6 +6,7 @@ node{
 }
     environment {
      DOCKERHUB_credentials=credentials('dockerhub')
+     WORKSPACE='${WORKSPACE}/loadbalancer'
 
  }
 
