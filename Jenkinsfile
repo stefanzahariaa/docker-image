@@ -6,6 +6,10 @@ node {
 
         checkout scm
     }
+    environment {
+        dockerhub=credentials('stefanzaharia93')
+        
+    }
 
     stage('Build image') {
   
