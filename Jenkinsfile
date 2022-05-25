@@ -1,34 +1,29 @@
-node {
-    def app
+pipeline{
+    agent any
+}
+ environment {
+     dockerhub=credentials('stefanzaharia93')
 
-    stage('Clone repository') {
-      
+ }
 
-        checkout scm
-    }
-    environment {
-        dockerhub=credentials('stefanzaharia93')
-
-    }
-
-    stage('Build image') {
-  
-       app = docker.build("loadbalancer")
-    }
-
-    stage('Test image') {
-  
-
-        app.inside {
-            sh 'echo "Tests passed"'
-        }
-    }
-
-    stage('Push image') {
-        steps{
-            sh 'docker tag loadbalancer stefanzaharia93/loadbalancer'
-            sh 'echo $dockerhub_PSW | docker login -u $dockerhub_USR --password-stdin'
-            sh 'docker push stefanzaharia93/loadbalancer'
-        }
-    }
+  stage('build image')
+  {
+      when{
+          branch "master"
+          }
+      steps{
+          sh 'docker build -t loadbalancer'
+      }
+  }
+  stage('pushing to dockerhub')
+  {
+      when{
+          branch"master"
+          }
+      steps{
+          sh 'docker tag loadbalancer stefanzaharia93/loadbalancer'
+          sh 'echo $dockerhub_PSW | docker login -u $dockerhub_USR --password-stdin'
+            
+          sh 'docker push stefanzaharia93/loadbalancer'
+      }
 }
