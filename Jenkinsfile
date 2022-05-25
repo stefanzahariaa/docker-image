@@ -9,7 +9,7 @@ node {
 
     stage('Build image') {
   
-       app = docker.build("docker-image/loadbalancer/")
+       app = docker.build("loadbalancer")
     }
 
     stage('Test image') {
