@@ -10,12 +10,7 @@ node{
  }
 
     stage('Build image'){
-      when{
-          branch "master"
-          }
-      steps{
-          sh 'docker build -t loadbalancer'
-      }
+      app = docker.build("loadbalancer")
   }
     stage('Pushing to dockerhub'){
       when{
