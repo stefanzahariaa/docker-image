@@ -25,10 +25,10 @@ node {
     }
 
     stage('Push image') {
-        
-        docker.withRegistry('https://registry.hub.docker.com' , 'git') {
-        app.push("${env.BUILD_NUMBER}")
-        app.push("latest")
+        steps{
+            sh 'docker tag loadbalancer stefanzaharia93/loadbalancer'
+            sh 'echo $dockerhub_PSW | docker login -u $dockerhub_USR --password-stdin'
+            sh 'docker push stefanzaharia93/loadbalancer'
         }
     }
 }
