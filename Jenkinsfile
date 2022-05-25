@@ -1,5 +1,9 @@
 pipeline{
-    agent any
+    def app
+stage('Clone repository') {
+      
+
+        checkout scm
 }
  environment {
      dockerhub=credentials('stefanzaharia93')
@@ -26,4 +30,5 @@ pipeline{
             
           sh 'docker push stefanzaharia93/loadbalancer'
       }
+    }
 }
