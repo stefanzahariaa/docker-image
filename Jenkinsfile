@@ -5,7 +5,6 @@ node{
           checkout scm
 }
     environment {
-     dockerhub=credentials('stefanzaharia93')
      USERNAME = credentials('DOCKER_USERNAME')
      PASSWORD = credentials('DOCKER_PASSWORD')
 
