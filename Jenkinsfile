@@ -5,7 +5,7 @@ node{
           checkout scm
 }
     environment {
-     dockerhub_credentials = credentials('dockerhub')
+     DOCKERHUB_CREDENTIALS=credentials('dockerhub')
 
  }
 
@@ -14,7 +14,7 @@ node{
   }
     stage('login'){
         
-          sh 'echo $dockerhubcredentials_PSW | docker login -u $dockerhubcredentials_USR --password-stdin'
+          sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 
     }
     stage('Pushing to dockerhub'){
