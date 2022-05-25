@@ -1,6 +1,6 @@
-pipeline{
+node{
     def app
-stage('Clone repository') {
+stage('Clone repository'){
       
 
         checkout scm
@@ -10,8 +10,7 @@ stage('Clone repository') {
 
  }
 
-  stage('build image')
-  {
+  stage('build image'){
       when{
           branch "master"
           }
@@ -19,8 +18,7 @@ stage('Clone repository') {
           sh 'docker build -t loadbalancer'
       }
   }
-  stage('pushing to dockerhub')
-  {
+  stage('pushing to dockerhub'){
       when{
           branch"master"
           }
