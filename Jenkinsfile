@@ -14,7 +14,7 @@ node{
   }
     stage('Pushing to dockerhub'){
           sh 'docker tag loadbalancer stefanzaharia93/loadbalancer'
-          sh 'echo $dockerhub_PSW | docker login -u $dockerhub_USR --password-stdin'
+          sh 'echo $dockerhub_PSW | docker login -u stefanzaharia93 --password-stdin'
             
           sh 'docker push stefanzaharia93/loadbalancer'
       }
