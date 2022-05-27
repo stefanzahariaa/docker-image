@@ -1,4 +1,4 @@
-FROM postgresql:9.5
+FROM postgresql:latest 
 
 RUN rm /etc/postgresql-setup/upgrade/postgresql.conf
 
