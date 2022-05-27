@@ -1,5 +1,5 @@
 FROM postgres
 
-RUN chmod a+r /docker-entrypoint-initdb.d/*
+RUN rm /etc/nginx/conf.d/default.conf
 
-COPY postgresql.conf /etc/postgresql
+COPY ostgresql.conf /etc/postgresql/conf.d/default.conf
