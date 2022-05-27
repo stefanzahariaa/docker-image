@@ -1,5 +1,5 @@
 FROM postgres
 
-RUN rm /etc/nginx/conf.d/default.conf
+RUN rm /etc/postgresql/conf.d/default.conf
 
-COPY ostgresql.conf /etc/postgresql/conf.d/default.conf
+COPY postgresql.conf /etc/postgresql/conf.d/default.conf
