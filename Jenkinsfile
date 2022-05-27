@@ -6,12 +6,12 @@ node{
 }
     environment {
      DOCKERHUB_credentials=credentials('dockerhub')
-     WORKSPACE='${WORKSPACE}/loadbalancer'
+     WORKSPACE='${WORKSPACE}/database'
 
  }
 
     stage('Build image'){
-      app = docker.build("loadbalancer")
+      app = docker.build("database")
   }
     stage('login'){
         
@@ -19,7 +19,7 @@ node{
 
     }
     stage('Pushing to dockerhub'){
-          sh 'docker push stefanzaharia93/loadbalancer:latest'
+          sh 'docker push stefanzaharia93/database:latest'
       }
     }
 
