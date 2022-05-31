@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   drupal:
-    image: stefanzaharia93/applicationgit:latest
+    image: stefanzaharia93/application:latest
     ports:
       - 8081:80
     volumes:
