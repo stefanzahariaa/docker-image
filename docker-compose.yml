@@ -2,9 +2,9 @@ version: '3.3'
 
 services:
   drupal:
-    image: stefanzaharia93/application:latest
+    image: stefanzaharia93/applicationgit:latest
     ports:
-      - 80:81
+      - 8081:80
     volumes:
       - drupal_modules:/var/www/html/modules
       - drupal_profiles:/var/www/html/profiles
