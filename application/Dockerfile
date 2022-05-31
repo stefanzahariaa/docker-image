@@ -1,0 +1,4 @@
+FROM library/drupal
+ENV DRUPAL_USER docker
+ENV DRUPAL_PASSWORD docker
+ENV PDRUPAL_DB docker
