@@ -1,28 +1,41 @@
-version: '3.3'
+version: '3.5'
 
 services:
-  drupal:
-    image: stefanzaharia93/application:latest
-    ports:
-      - 8081:80
-    volumes:
-      - drupal_modules:/var/www/html/modules
-      - drupal_profiles:/var/www/html/profiles
-      - drupal_themes:/var/www/html/themes
-      - drupal_sites:/var/www/html/sites
-    restart: always
-
   postgres:
-    image: postgres:10
+    container_name: database
+    image: database
     environment:
-      POSTGRES_PASSWORD: 123456789
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      PGDATA: /data/postgres
     volumes:
-        - db_data:/var/lib/postgresql/data
-    restart: always
+       - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+  
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+       - pgadmin:/var/lib/pgadmin
+
+    ports:
+      - "${PGADMIN_PORT:-5050}:81"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+networks:
+  postgres:
+    driver: bridge
 
 volumes:
-  drupal_modules:
-  drupal_profiles:
-  drupal_themes:
-  drupal_sites:
-  db_data:
+    postgres:
+    pgadmin:
